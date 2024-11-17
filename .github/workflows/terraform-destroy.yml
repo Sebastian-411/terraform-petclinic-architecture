@@ -1,12 +1,10 @@
-name: Terraform Apply
+name: Terraform Destroy
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  terraform-apply:
+  terraform-destroy:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,5 +40,5 @@ jobs:
         -backend-config="key=${{ secrets.KEY_STATE }}" \
         -backend-config="region=${{ secrets.AWS_DEFAULT_REGION }}"
 
-    - name: Run Terraform Apply
-      run: terraform apply -auto-approve -var-file="terraform.tfvars"
+    - name: Run Terraform Destroy
+      run: terraform destroy -auto-approve -var-file="terraform.tfvars"
