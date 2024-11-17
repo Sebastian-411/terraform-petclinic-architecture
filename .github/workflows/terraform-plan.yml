@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   terraform-plan:
     runs-on: ubuntu-latest
@@ -37,4 +41,29 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
     - name: Run Terraform Plan
-      run: terraform plan -var-file="terraform.tfvars"
+      run: terraform plan -var-file="terraform.tfvars" -out=tfplan
+
+    - name: Convert Terraform Plan to readable format
+      run: terraform show -no-color tfplan > plan.txt
+
+    - name: Comment on PR with Terraform Plan
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          const planOutput = fs.readFileSync('plan.txt', 'utf8');
+          const commentBody = `
+          ## Terraform Plan Result
+          \`\`\`hcl
+          ${planOutput}
+          \`\`\`
+          `;
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: commentBody,
+          });
+
+          
