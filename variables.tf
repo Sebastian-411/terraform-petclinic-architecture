@@ -43,10 +43,6 @@ variable "tenant_id" {
   type        = string
 }
 
-variable "object_id" {
-  description = "Object ID for Key Vault access"
-  type        = string
-}
 
 variable "client_id" {
   description = "client_id for azure"
