@@ -37,5 +37,8 @@ jobs:
     - name: Initialize Terraform
       run: terraform init -backend-config="bucket=${{ secrets.BUCKET_NAME }}" -backend-config="key=${{ secrets.KEY_STATE }}" -backend-config="region=${{ secrets.AWS_DEFAULT_REGION }}"
 
+    - name: Download terraform.tfvars from S3
+      run: aws s3 cp "s3://${{ secrets.BUCKET_NAME }}/${{ secrets.KEY_TFVARS }}" terraform.tfvars
+
     - name: Run Terraform Destroy
       run: terraform destroy -auto-approve -var-file="terraform.tfvars"
