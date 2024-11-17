@@ -1,5 +1,6 @@
+
 resource "azurerm_key_vault" "key_vault" {
-  name                        = "petskeyvault-12345"
+  name                        = "petskeyvault-2024-10-10"
   location                    = var.location
   resource_group_name         = var.resource_group_name
   enabled_for_disk_encryption = var.enabled_for_disk_encryption

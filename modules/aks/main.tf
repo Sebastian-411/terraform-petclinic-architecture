@@ -8,16 +8,10 @@ resource "azurerm_kubernetes_cluster" "aks_pet" {
     name       = "petnodepool"
     node_count = var.node_count
     vm_size    = var.vm_size
-    os_disk_size_gb = 30
   }
 
   identity {
     type = "SystemAssigned"
-  }
-
-  network_profile {
-    network_plugin = "azure"
-    network_policy = "calico"
   }
 
   tags = var.tags
