@@ -38,6 +38,7 @@ jobs:
   terraform-plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
+    needs: terraform-generate-vars
     env:
       ARM_SKIP_PROVIDER_REGISTRATION: true
     outputs:
