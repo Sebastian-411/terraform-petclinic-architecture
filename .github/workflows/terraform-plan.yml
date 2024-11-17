@@ -37,7 +37,7 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
     - name: Run Terraform Plan
-      run: terraform plan -var-file="terraform.tfvars"
+      run: terraform plan -var-file="terraform.tfvars" -out=tfplan
 
     - name: Convert Terraform Plan to readable format
       run: terraform show -no-color tfplan > plan.txt
