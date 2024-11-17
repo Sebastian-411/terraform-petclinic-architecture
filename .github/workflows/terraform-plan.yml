@@ -38,3 +38,25 @@ jobs:
 
     - name: Run Terraform Plan
       run: terraform plan -var-file="terraform.tfvars"
+
+    - name: Convert Terraform Plan to readable format
+      run: terraform show -no-color tfplan > plan.txt
+
+    - name: Comment on PR with Terraform Plan
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const planOutput = fs.readFileSync('plan.txt', 'utf8');
+          const commentBody = `
+          ## Terraform Plan Result
+          \`\`\`hcl
+          ${planOutput}
+          \`\`\`
+          `;
+          github.rest.issues.createComment({
+            issue_number: context.payload.pull_request.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: commentBody,
+          });
