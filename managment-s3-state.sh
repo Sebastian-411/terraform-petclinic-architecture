@@ -28,6 +28,17 @@ install_terraform() {
     fi
 }
 
+# Configuración de variables AWS
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_DEFAULT_REGION=""
+
+BUCKET_NAME="terraform-s3-spring-peetclinic"
+KEY_TFVARS="terraform.tfvars"
+KEY_STATE="terraform.tfstate"
+PLAN_FILE="terraform.plan"
+WORKING_DIR="./"
+
 
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
@@ -42,7 +53,7 @@ install_aws_cli
 install_terraform
 
 # Acción a ejecutar: apply o destroy
-ACTION="apply"
+ACTION="destroy"
 if [[ "$ACTION" != "apply" && "$ACTION" != "destroy" ]]; then
     echo "Acción no válida. Usa 'apply' para aplicar o 'destroy' para destruir."
     exit 1
