@@ -1,16 +1,12 @@
-# main.tf
-
 resource "azurerm_sql_server" "sql_server" {
   name                         = var.sql_server_name
   resource_group_name          = var.resource_group_name
   location                     = var.location
-  version                      = "12.0"
-  administrator_login          = "sqladmin"
-  administrator_login_password = var.sql_admin_password
+  version                      = var.sql_server_version
+  administrator_login          = var.administrator_login
+  administrator_login_password = var.administrator_login_password
 
-  tags = {
-    environment = "Production"
-  }
+  tags = var.tags
 }
 
 resource "azurerm_sql_database" "sql_database" {
@@ -19,7 +15,5 @@ resource "azurerm_sql_database" "sql_database" {
   location            = var.location
   server_name         = azurerm_sql_server.sql_server.name
 
-  tags = {
-    environment = "Production"
-  }
+  tags = var.tags
 }

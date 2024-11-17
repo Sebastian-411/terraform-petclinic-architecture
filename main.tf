@@ -51,5 +51,21 @@ module "key_vault" {
   resource_group_name = var.resource_group_name
   location            = var.location
   tenant_id           = var.tenant_id
+  object_id           = var.object_id
 }
 
+
+
+module "sql_database" {
+  source                 = "./modules/sql_database"
+  sql_server_name        = "my-sql-server"
+  sql_database_name      = "my-database"
+  resource_group_name    = azurerm_resource_group.resource_group_pet_clinic.name
+  location               = "eastus"
+  sql_server_version     = "12.0"
+  administrator_login    = "myadmin"
+  administrator_login_password = "securepassword123!"
+  tags = {
+    environment = "Development"
+  }
+}

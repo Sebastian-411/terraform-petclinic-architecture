@@ -13,6 +13,11 @@ variable "tenant_id" {
   type        = string
 }
 
+variable "object_id" {
+  description = "ID del objeto para la política de acceso"
+  type        = string
+}
+
 variable "soft_delete_retention_days" {
   description = "Número de días para retención de eliminación suave"
   type        = number

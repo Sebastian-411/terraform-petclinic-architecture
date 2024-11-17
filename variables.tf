@@ -23,26 +23,15 @@ variable "aks_node_count" {
   type        = number
 }
 
-variable "sql_admin_password" {
-  description = "SQL Admin password"
-  type        = string
-}
-
-variable "sql_server_name" {
-  description = "Name of the SQL server"
-  type        = string
-}
-
-variable "sql_database_name" {
-  description = "Name of the SQL database"
-  type        = string
-}
-
 variable "tenant_id" {
   description = "Tenant ID for Azure"
   type        = string
 }
 
+variable "object_id" {
+  description = "Object ID for Key Vault access"
+  type        = string
+}
 
 variable "client_id" {
   description = "client_id for azure"
@@ -54,3 +43,35 @@ variable "client_secret" {
   type        = string
 }
 
+
+variable "sql_server_name" {
+  description = "The name of the SQL Server."
+  type        = string
+}
+
+variable "sql_database_name" {
+  description = "The name of the SQL Database."
+  type        = string
+}
+
+variable "sql_server_version" {
+  description = "The version of the SQL Server."
+  type        = string
+  default     = "12.0"
+}
+
+variable "administrator_login" {
+  description = "The administrator login for the SQL Server."
+  type        = string
+}
+
+variable "administrator_login_password" {
+  description = "The administrator password for the SQL Server."
+  type        = string
+  sensitive   = true
+}
+
+variable "tags" {
+  description = "A map of tags to assign to the resources."
+  type        = map(string)
+}
