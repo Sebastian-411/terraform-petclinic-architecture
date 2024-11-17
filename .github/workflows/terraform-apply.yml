@@ -3,10 +3,7 @@ name: 'Terraform Plan/Apply'
 on:
   push:
     branches:
-    - main
-  pull_request:
-    branches:
-    - main
+    - master
 
 permissions:
   id-token: write
