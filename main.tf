@@ -51,6 +51,5 @@ module "key_vault" {
   resource_group_name = var.resource_group_name
   location            = var.location
   tenant_id           = var.tenant_id
-  object_id           = var.object_id
 }
 
