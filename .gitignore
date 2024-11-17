@@ -20,3 +20,5 @@ terraform.rc
 
 *.log
 *.plan
+
+aws/
