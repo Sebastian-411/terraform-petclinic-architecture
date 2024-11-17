@@ -1,0 +1,21 @@
+*.tfstate
+*.tfstate.*
+
+*.tfstate.backup
+*.tfstate.backup.*
+
+.terraform.lock.hcl
+
+.terraform/
+
+# Archivos de variables sensibles (ejemplo: claves API)
+*.tfvars
+*.tfvars.json
+
+crash.log
+override.tf
+override.tf.json
+.terraformrc
+terraform.rc
+
+*.log
