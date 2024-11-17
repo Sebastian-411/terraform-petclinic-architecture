@@ -25,10 +25,7 @@ jobs:
         echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
 
     - name: Initialize Terraform
-      run: terraform init \
-        -backend-config="bucket=${{ secrets.BUCKET_NAME }}" \
-        -backend-config="key=${{ secrets.KEY_STATE }}" \
-        -backend-config="region=${{ secrets.AWS_DEFAULT_REGION }}"
-
+      run: terraform init -backend-config="bucket=${{ secrets.BUCKET_NAME }}" -backend-config="key=${{ secrets.KEY_STATE }}" -backend-config="region=${{ secrets.AWS_DEFAULT_REGION }}"
+    
     - name: Run Terraform Plan
       run: terraform plan -var-file="terraform.tfvars"
