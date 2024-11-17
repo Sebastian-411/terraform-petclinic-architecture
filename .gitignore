@@ -19,3 +19,4 @@ override.tf.json
 terraform.rc
 
 *.log
+*.plan
