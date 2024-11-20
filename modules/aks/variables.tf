@@ -25,7 +25,7 @@ variable "node_count" {
 variable "vm_size" {
   description = "Tamaño de las máquinas virtuales en el clúster de AKS"
   type        = string
-  default     = "standard_b2als_v2"
+  default     = "standard_b2ps_v2"
 }
 
 variable "dns_prefix" {
