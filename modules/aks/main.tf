@@ -39,10 +39,6 @@ resource "helm_release" "linkerd" {
   chart      = "linkerd2"
   namespace  = "linkerd"
   create_namespace = true
-
-  values = [
-    file("${path.module}/values/linkerd-values.yaml")  # Si tienes un archivo de configuración específico para Linkerd
-  ]
 }
 
 # Instalación de KEDA usando Helm
