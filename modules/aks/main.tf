@@ -16,3 +16,9 @@ resource "azurerm_kubernetes_cluster" "aks_pet" {
 
   tags = var.tags
 }
+
+
+
+
+
+
